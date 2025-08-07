@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import fileUpload from "express-fileupload";
 import { v2 as cloudinary } from "cloudinary";
+import storeRoute from "./routes/storeRoutes.js";
 dotenv.config();
 
 const app = express();
@@ -26,9 +27,8 @@ app.listen(PORT, ()=>{
     console.log(`Server is running on port ${PORT}`);
 })
 
-app.get('/',(req,res)=>{
-    res.send("api is running");
-})
+
+app.route("/",storeRoute);
 
 try{
     mongoose.connect(BACKEND_URL,{
